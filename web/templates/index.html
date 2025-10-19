@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Teams</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        // Добавляем заголовок для обхода предупреждения ngrok
+        if (window.fetch) {
+            const originalFetch = window.fetch;
+            window.fetch = function(url, options = {}) {
+                options.headers = {
+                    ...options.headers,
+                    'ngrok-skip-browser-warning': 'true'
+                };
+                return originalFetch(url, options);
+            };
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Valorant Teams</h1>
+            <div id="user-info" class="user-info">
+                <span id="user-name">Загрузка...</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-button active" onclick="showTab('teams')">Команды</button>
+                <button class="tab-button" onclick="showTab('my-team')">Моя команда</button>
+            </div>
+
+            <div id="teams-tab" class="tab-content active">
+                <div class="teams-header">
+                    <h2>Все команды</h2>
+                    <button class="btn btn-primary" onclick="showCreateTeamModal()">Создать команду</button>
+                </div>
+                <div id="teams-list" class="teams-list">
+                    <!-- Teams will be loaded here -->
+                </div>
+            </div>
+
+            <div id="my-team-tab" class="tab-content">
+                <div id="my-team-content">
+                    <!-- My team content will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Team Modal -->
+    <div id="create-team-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Создать команду</h3>
+                <span class="close" onclick="closeCreateTeamModal()">&times;</span>
+            </div>
+            <form id="create-team-form">
+                <div class="form-group">
+                    <label for="team-name">Название команды:</label>
+                    <input type="text" id="team-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team-description">Описание:</label>
+                    <textarea id="team-description" name="description"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateTeamModal()">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Создать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
