@@ -84,6 +84,14 @@ func main() {
 		api.POST("/teams/:team_id/users/:user_id/roles/:role_id", handlers.AssignRole)
 		api.DELETE("/teams/:team_id/users/:user_id/roles/:role_id", handlers.RemoveRole)
 		api.GET("/teams/:team_id/users/:user_id/roles", handlers.GetUserRoles)
+
+		// Valorant routes
+		api.POST("/users/:telegram_id/valorant", handlers.AddValorantPlayer)
+		api.GET("/users/:telegram_id/valorant", handlers.GetValorantPlayer)
+		api.GET("/teams/:team_id/valorant", handlers.GetTeamValorantPlayers)
+		api.POST("/users/:telegram_id/valorant/sync", handlers.SyncPlayerData)
+		api.GET("/users/:telegram_id/valorant/stats", handlers.GetPlayerStats)
+		api.GET("/teams/:team_id/valorant/stats", handlers.GetTeamStats)
 	}
 
 	// Webhook for Telegram bot (only if using webhook)

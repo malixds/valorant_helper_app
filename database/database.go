@@ -25,7 +25,16 @@ func InitDB(cfg *config.Config) {
 	}
 
 	// Auto migrate the schema
-	err = DB.AutoMigrate(&models.User{}, &models.Team{}, &models.Role{}, &models.Permission{})
+	err = DB.AutoMigrate(
+		&models.User{},
+		&models.Team{},
+		&models.Role{},
+		&models.Permission{},
+		&models.ValorantPlayer{},
+		&models.ValorantMatch{},
+		&models.ValorantPlayerMatch{},
+		&models.ValorantStats{},
+	)
 	if err != nil {
 		log.Fatal("Failed to migrate database:", err)
 	}

@@ -19,6 +19,7 @@ type Config struct {
 	DBPassword       string
 	DBName           string
 	DBSSLMode        string
+	ValorantAPIKey   string
 }
 
 func LoadConfig() *Config {
@@ -38,6 +39,7 @@ func LoadConfig() *Config {
 		DBPassword:       getEnv("DB_PASSWORD", ""),
 		DBName:           getEnv("DB_NAME", "valorant_db"),
 		DBSSLMode:        getEnv("DB_SSLMODE", "disable"),
+		ValorantAPIKey:   getEnv("VALORANT_API_KEY", ""),
 	}
 }
 
